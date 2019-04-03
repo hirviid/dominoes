@@ -101,12 +101,20 @@ function updateGameBoard(domino) {
   } else if (matchesLast(domino)) {
     gameBoard = [...gameBoard, domino];
   } else {
-    throw new Error('Invalid domino');
+    // throw new Error('Invalid domino');
+    return;
   }
 
   playerDominoes = playerDominoes.reduce((newHands, playerDomino) => {
     if (!dominoesAreEqual(playerDomino, domino)) {
       return [...newHands, playerDomino];
+    }
+    return newHands;
+  }, []);
+
+  computerDominos = computerDominos.reduce((newHands, computerDomino) => {
+    if (!dominoesAreEqual(computerDomino, domino)) {
+      return [...newHands, computerDomino];
     }
     return newHands;
   }, []);
